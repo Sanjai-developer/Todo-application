@@ -23,10 +23,12 @@
     </form>
     <div class="list-group">
         <th:block th:each="task : ${tasks}">
-            <div class="list-group-item d-flex justify-content-between align-items-center">
-                <span th:classappend="${task.complete} ? 'text-strikethrough'" th:text="${task.title}">Task Title</span>
-                <a th:href="@{/{id}/toggle(id=${task.id})}" class="btn btn-outline-secondary btn-sm">Toggle</a>
-                <a th:href="@{/{id}/delete(id=${task.id})}" class="btn btn-outline-danger btn-sm">Delete</a>
+            <div class="list-group-item d-flex justify-content-between align-items-center" th:classappend="${task.complete} ? 'text-muted text-decoration-line-through' : ''">
+                <span th:text="${task.title}">Task Title</span>
+                <div>
+                    <a th:href="@{/{id}/toggle(id=${task.id})}" class="btn btn-outline-secondary btn-sm" th:text="${task.complete} ? 'Undo' : 'Complete'">Toggle</a>
+                    <a th:href="@{/{id}/delete(id=${task.id})}" class="btn btn-outline-danger btn-sm">Delete</a>
+                </div>
             </div>
         </th:block>
     </div>
